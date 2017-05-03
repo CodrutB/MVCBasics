@@ -13,6 +13,8 @@ namespace MVCBasics
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Games", "{controller}/{action}", new { controller="Games", action="Index"});
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
