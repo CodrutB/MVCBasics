@@ -10,6 +10,10 @@ namespace MVCBasics.Controllers
     {
         public ActionResult Index()
         {
+            var controller = RouteData.Values["controller"];
+
+            ViewBag.Message = "Controller : " + controller;
+
             return View();
         }
 
