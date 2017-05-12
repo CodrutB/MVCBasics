@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace MVCBasics
@@ -13,13 +9,12 @@ namespace MVCBasics
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("Games", "{controller}/{action}", new { controller="Games", action="Index"});
+            routes.MapMvcAttributeRoutes();
+            routes.MapRoute("Games", "{controller}/{action}", new {controller = "Games", action = "Index"});
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            routes.MapRoute("Default", "{controller}/{action}/{id}",
+                new {controller = "Home", action = "Index", id = UrlParameter.Optional}
+                );
         }
     }
 }
