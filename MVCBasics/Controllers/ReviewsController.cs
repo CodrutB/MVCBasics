@@ -45,6 +45,15 @@ namespace MVCBasics.Controllers
             return View(model);
         }
 
+        [ChildActionOnly]
+        public ActionResult BestReview()
+        {
+            var review = from r in _reviews
+                             orderby r.Raiting descending 
+                             select r;
+            return PartialView("_BestReview", review.First());
+        }
+
         // GET: Reviews2/Details/5
         public ActionResult Details(int id)
         {
