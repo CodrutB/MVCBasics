@@ -19,7 +19,7 @@ namespace MVCBasics.Controllers
             },
             new GameReview
             {
-                Id = 1,
+                Id = 2,
                 Company = "CD Projekt Red",
                 Name = "The Witcher 3",
                 ReviewerName = "Mark",
@@ -27,7 +27,7 @@ namespace MVCBasics.Controllers
             },
             new GameReview
             {
-                Id = 1,
+                Id = 3,
                 Company = "Valve",
                 Name = "Dota 2",
                 ReviewerName = "James",
@@ -76,22 +76,28 @@ namespace MVCBasics.Controllers
         // GET: Reviews2/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var review = _reviews.Single(item => item.Id == id);
+            return View(review);
         }
 
         // POST: Reviews2/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            var review = _reviews.Single(item => item.Id == id);
             try
             {
-                // TODO: Add update logic here
+                if (TryUpdateModel(review))
+                {
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View(review);
             }
             catch
             {
-                return View();
+                return View(review);
             }
         }
 
